@@ -1,12 +1,12 @@
 import { createWriteStream } from 'fs-extra';
 import axios from 'axios';
 
-import { getNeoVimLocation } from '../paths';
+import neoVimPaths from '../paths';
 
 import { NVIM_IMAGE_URL } from '../constants';
 
 export const downloadNeoVim = async (): Promise<void> => {
-  const writer = createWriteStream(getNeoVimLocation());
+  const writer = createWriteStream(neoVimPaths.getEditor());
   const response = await axios({
     method: 'get',
     url: NVIM_IMAGE_URL,

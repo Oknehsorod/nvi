@@ -1,11 +1,7 @@
 import { removeSync, existsSync, mkdirSync, copySync } from 'fs-extra';
 import { join } from 'path';
 
-import {
-  getNeoVimLocationFolder,
-  getNeoVimConfigFolder,
-  getNeoVimPluginFolder,
-} from '../paths';
+import neoVimPaths from '../paths';
 
 const createFolder = (path: string) => {
   if (!existsSync(path))
@@ -14,15 +10,15 @@ const createFolder = (path: string) => {
     });
 };
 
-const createNeoVimFolder = () => createFolder(getNeoVimLocationFolder());
-const createNeoVimConfigFolder = () => createFolder(getNeoVimConfigFolder());
+const createNeoVimFolder = () => createFolder(neoVimPaths.getEditorFolder());
+const createNeoVimConfigFolder = () => createFolder(neoVimPaths.getConfigFolder());
 
-const removeNeoVimConfigFolder = () => removeSync(getNeoVimConfigFolder());
-const removeNeoVimFolder = () => removeSync(getNeoVimLocationFolder());
-const removeNeoVimPluginFolder = () => removeSync(getNeoVimPluginFolder());
+const removeNeoVimConfigFolder = () => removeSync(neoVimPaths.getConfigFolder());
+const removeNeoVimFolder = () => removeSync(neoVimPaths.getEditorFolder());
+const removeNeoVimPluginFolder = () => removeSync(neoVimPaths.getPluginFolder());
 
 const putDefaultNeoVimConfig = () =>
-  copySync(join(__dirname, '../../.config'), getNeoVimConfigFolder());
+  copySync(join(__dirname, '../../.config'), neoVimPaths.getConfigFolder());
 
 export const removeAllNeoVimFolders = () => {
   removeNeoVimFolder();

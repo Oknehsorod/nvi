@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import ora from 'ora';
+
 import {
   removeAllNeoVimFolders,
   createAllNeoVimFolders,
@@ -10,6 +12,7 @@ import {
   installNeoVimPlugins,
   installCocPlugins,
   makeNeoVimExecutable,
+  addAliases,
 } from './utils/commands';
 import {
   logDeletingAllNeoVimFolders,
@@ -19,9 +22,17 @@ import {
   logInstallNeoVimPlug,
   logInstallNeoVimPlugins,
   logInstallCocPlugins,
+  logAddingAliases,
 } from './utils/logger';
+import neoVimPaths from './paths';
+
+import { askConfigurationQuestions } from './utils/prompt';
 
 const main = async () => {
+  const configuration = await askConfigurationQuestions();
+  neoVimPaths.setEditor(configuration.neoVimEditorPath);
+  neoVimPaths.setConfigFolder(configuration.neoVimConfigPath);
+
   logDeletingAllNeoVimFolders();
   removeAllNeoVimFolders();
 
@@ -30,7 +41,7 @@ const main = async () => {
 
   logDownloadingNeoVim();
   await downloadNeoVim();
-  makeNeoVimExecutable()
+  makeNeoVimExecutable();
   copyNVimConfigToConfigFolder();
   logDownloadCompleteNeoVim();
 
@@ -42,6 +53,11 @@ const main = async () => {
 
   logInstallCocPlugins();
   installCocPlugins();
+
+  if (configuration.neoVimAliases) {
+    logAddingAliases();
+    addAliases();
+  }
 };
 
 main();
