@@ -1,0 +1,17 @@
+set number
+syntax enable
+set background=dark
+set tabstop=2
+set shiftwidth=2
+set softtabstop=0
+set smarttab
+set expandtab
+colorscheme gruvbox
+set clipboard=unnamed
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set shortmess+=c
+set nofixendofline
+set signcolumn=yes
