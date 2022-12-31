@@ -1,17 +1,29 @@
 {
   "name": "nvi-editor",
-  "version": "1.0.5",
+  "version": "1.0.9",
   "description": "NVI Config for NeoVim",
   "main": "./src/main.js",
+  "keywords": [
+    "editor",
+    "nvim",
+    "npx-tool"
+  ],
   "bin": {
     "nvi-editor": "./dist/main.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Oknehsorod/nvi"
+  },
+  "os": [
+    "darwin",
+    "linux"
+  ],
   "scripts": {
     "start": "ts-node src/main.ts",
     "build": "tsc -p tsconfig.json",
     "publish-tool": "npm run build; npm publish"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
