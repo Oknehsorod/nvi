@@ -1,6 +1,6 @@
 {
   "name": "nvi-editor",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "NVI Config for NeoVim",
   "main": "./src/main.js",
   "keywords": [
